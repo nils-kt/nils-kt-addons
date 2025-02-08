@@ -1,5 +1,5 @@
 name: Parcel Tracker
-version: "2.0.1"
+version: "2.0.2"
 slug: parcel_tracker
 description: Ein Home Assistant Add‑On zur Paketverfolgung via DHL (weitere Anbieter sind in Planung).
 url: "https://github.com/nils-kt/nils-kt-addons/tree/main/parcel_tracker"
