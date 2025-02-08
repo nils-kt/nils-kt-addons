@@ -69,7 +69,6 @@ class ParcelTrackerCard extends HTMLElement {
                  )}%; background: #2196F3; border-radius: 4px;"></div>
                </div>`
             : "";
-        // Hier wird die letzte Aktualisierung (last_update) hinzugefügt, dezent dargestellt
         const lastUpdate = item.last_update ? item.last_update : "unbekannt";
         content += `<div style="padding: 8px; background: ${bgColor}; border-radius: 12px; margin-bottom: ${marginBottom};">
                       <div style="font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${title}</div>
