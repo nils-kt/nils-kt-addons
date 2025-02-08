@@ -4,7 +4,7 @@ Willkommen zu den Nils Home Assistant Addons! Dieses Projekt enthält eine Samml
 
 ## Installation
 
-Um die Addons zu installieren, fügen Sie das folgende Repository zu Ihrem Home Assistant hinzu:
+Um die Addons zu installieren, füge das folgende Repository zu deinem Home Assistant hinzu:
 
 Gehe in Home Assistant zu **Einstellungen → Add-ons → Add-on Store** und klicke auf **„Repositorie“**.  
 Gib die URL des Repositories ein: `https://github.com/nils-kt/nils-kt-addons`
