@@ -5,14 +5,14 @@ CONFIG_FILE = "/data/options.json"
 
 DEFAULT_CONFIG = {
     "host_ip": "127.0.0.1",
-    "update_interval": 10,      # Aktualisierungsintervall in Minuten
-    "notify_on_change": False   # Benachrichtigung bei Statusänderung aktivieren/deaktivieren
+    "update_interval": 10,      # Update interval in minutes
+    "notify_on_change": False   # Enable/disable notification on status change
 }
 
 def load_config():
     """
-    Lädt die Konfiguration aus der CONFIG_FILE. Falls die Datei nicht existiert
-    oder ein Fehler auftritt, wird DEFAULT_CONFIG zurückgegeben.
+    Loads the configuration from CONFIG_FILE. If the file does not exist
+    or an error occurs, DEFAULT_CONFIG is returned.
     """
     if os.path.exists(CONFIG_FILE):
         try:
@@ -20,5 +20,5 @@ def load_config():
                 config = json.load(f)
             return config
         except Exception as err:
-            print(f"Fehler beim Laden der Konfiguration: {err}")
+            print(f"Error loading configuration: {err}")
     return DEFAULT_CONFIG

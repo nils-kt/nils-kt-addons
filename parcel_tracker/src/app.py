@@ -7,18 +7,18 @@ from parcel_tracker.src.tracking import load_trackings, update_trackings, tracki
 from parcel_tracker.src.notifications import send_notification
 from parcel_tracker.src.routes import bp as routes_bp
 
-# Deaktiviere den Werkzeug-Logger für eine saubere Ausgabe
+# Disable the Werkzeug logger for clean output
 logging.getLogger('werkzeug').disabled = True
 
 app = Flask(__name__)
 CORS(app)
 app.logger.disabled = True
 
-# Lade Konfiguration und Trackings
+# Load configuration and tracking data
 config = load_config()
 load_trackings()
 
-# Registriere den Blueprint mit den Routen
+# Register the blueprint with the routes
 app.register_blueprint(routes_bp)
 
 @app.after_request
@@ -29,7 +29,7 @@ def add_cors_headers(response):
     return response
 
 if __name__ == "__main__":
-    # Starte den Hintergrund-Thread für die Aktualisierung der Tracking-Daten
+    # Start the background thread for updating tracking data
     updater = threading.Thread(target=update_trackings, args=(config, send_notification), daemon=True)
     updater.start()
     app.run(host="0.0.0.0", port=58784)

@@ -10,14 +10,14 @@ config = load_config()
 @bp.route("/", methods=["GET"])
 def overview():
     """
-    Rendert die Übersichtseite.
+    Renders the overview page.
     """
     return render_template("overview.html", trackings=trackings, config=config)
 
 @bp.route("/trackings", methods=["GET"])
 def get_trackings():
     """
-    Gibt die aktuellen Tracking-Daten als JSON zurück.
+    Returns the current tracking data as JSON.
     """
     results = []
     for tn, info in trackings.items():
@@ -45,7 +45,7 @@ def get_trackings():
 @bp.route("/add", methods=["POST"])
 def add_tracking():
     """
-    Fügt eine neue Tracking-Nummer hinzu.
+    Adds a new tracking number.
     """
     tn = request.form.get("tracking_number")
     package_name = request.form.get("package_name")
@@ -62,7 +62,7 @@ def add_tracking():
 @bp.route("/delete/<tracking_number>", methods=["POST"])
 def delete_tracking(tracking_number):
     """
-    Löscht einen Tracking-Eintrag.
+    Deletes a tracking entry.
     """
     if tracking_number in trackings:
         del trackings[tracking_number]
