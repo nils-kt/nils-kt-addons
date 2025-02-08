@@ -61,15 +61,20 @@ class ParcelTrackerCard extends HTMLElement {
           item.maxProgress != null &&
           item.maxProgress > 0
             ? `<div style="margin-top: 4px; height: 8px; background: #444; border-radius: 4px;">
-               <div style="height: 8px; width: ${(
-                 (item.progress / item.maxProgress) *
-                 100
-               ).toFixed(0)}%; background: #2196F3; border-radius: 4px;"></div>
-             </div>`
+                 <div style="height: 8px; width: ${(
+                   (item.progress / item.maxProgress) *
+                   100
+                 ).toFixed(
+                   0
+                 )}%; background: #2196F3; border-radius: 4px;"></div>
+               </div>`
             : "";
+        // Hier wird die letzte Aktualisierung (last_update) hinzugefügt, dezent dargestellt
+        const lastUpdate = item.last_update ? item.last_update : "unbekannt";
         content += `<div style="padding: 8px; background: ${bgColor}; border-radius: 12px; margin-bottom: ${marginBottom};">
                       <div style="font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${title}</div>
                       <div style="font-size: 0.9em; color: #ccc;">${item.status}</div>
+                      <div style="font-size: 0.8em; color: #888; --mdc-icon-size: 1.3em;"><ha-icon icon="mdi:update"/></ha-icon> ${lastUpdate} Uhr</div>
                       ${progressBar}
                     </div>`;
       });

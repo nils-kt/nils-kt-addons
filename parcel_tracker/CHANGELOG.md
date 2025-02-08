@@ -1,3 +1,15 @@
+## [2.0.3] - 08.02.2025
+
+### Changed
+- **Benachrichtigungsintegration:**  
+  Die Funktion `update_trackings` wurde erweitert, sodass bei Änderung des Sendungsstatus eine Benachrichtigung über `send_notification` versendet wird, sofern die Konfiguration `notify_on_change` aktiviert ist.
+- **Neue Konfigurationsoption:**  
+  Die Option `notify_on_change` wurde in die Konfiguration aufgenommen, um die Benachrichtigungsfunktion zu steuern.
+- **Verbesserte Fehlerbehandlung:**  
+  Fehler beim Abrufen der DHL-Daten und beim Versenden von Benachrichtigungen werden nun detaillierter protokolliert.
+- **Logging:**  
+  Das Logging von Flask und Werkzeug wurde deaktiviert, um die Konsolenausgabe übersichtlicher zu gestalten.
+
 ## [2.0.2] - 08.02.2025
 
 ### Added
