@@ -1,0 +1,15 @@
+{
+  "title": "Paket Tracker",
+  "config": {
+    "name": "Paket Tracker",
+    "description": "Ein Home Assistant Add‑On zur Paketverfolgung ausschließlich via DHL.",
+    "host_ip": "IP-Adresse des Hosts",
+    "update_interval": "Aktualisierungsintervall (in Minuten)"
+  },
+  "state": {
+    "loading": "Daten werden geladen..."
+  },
+  "error": {
+    "unable_to_fetch": "Fehler beim Abrufen der Sendungen"
+  }
+}
