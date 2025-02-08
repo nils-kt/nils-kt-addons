@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, render_template, redirect, url_for
 import time
-from parcel_tracker.src.tracking import trackings, dhl_fetch, save_trackings
-from parcel_tracker.src.config import load_config
+from tracking import trackings, dhl_fetch, save_trackings
+from config import load_config
 
 bp = Blueprint("routes", __name__)
 

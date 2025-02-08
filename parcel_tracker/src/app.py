@@ -2,10 +2,10 @@ from flask import Flask
 from flask_cors import CORS
 import threading
 import logging
-from parcel_tracker.src.config import load_config
-from parcel_tracker.src.tracking import load_trackings, update_trackings, trackings
-from parcel_tracker.src.notifications import send_notification
-from parcel_tracker.src.routes import bp as routes_bp
+from config import load_config
+from tracking import load_trackings, update_trackings, trackings
+from notifications import send_notification
+from routes import bp as routes_bp
 
 # Disable the Werkzeug logger for clean output
 logging.getLogger('werkzeug').disabled = True
