@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parcel Tracker Übersicht</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Vue.js -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script>
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <style>
+    .glass-box {
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.5rem;
+    }
+    .logo-hover {
+      transition: transform 300ms ease, opacity 300ms ease;
+    }
+    .logo-hover:hover {
+      transform: rotate(-5deg) scale(0.9);
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <div id="app" class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-4xl space-y-8">
+      <div class="flex justify-center">
+        <img src="https://raw.githubusercontent.com/nils-kt/nils-kt-addons/refs/heads/main/parcel_tracker/icon.png" 
+             alt="Parcel Tracker Logo" 
+             class="logo-hover w-32 h-auto">
+      </div>
+      <h1 class="text-4xl font-bold text-center">Parcel Tracker Übersicht</h1>
+      <div class="glass-box w-full p-6 shadow-xl">
+        <h2 class="text-2xl font-semibold mb-4">Add Tracking Number</h2>
+        <form action="{{ url_for('routes.add_tracking') }}" method="post" class="flex flex-col sm:flex-row gap-4">
+          <input type="text" id="tracking_number" name="tracking_number" placeholder="Tracking Number" required
+                 class="flex-1 p-3 border border-gray-700 rounded bg-black text-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <input type="text" id="package_name" name="package_name" placeholder="Package Name (optional)"
+                 class="flex-1 p-3 border border-gray-700 rounded bg-black text-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <button type="submit" class="px-6 py-3 rounded bg-gray-700 hover:bg-gray-600 text-white font-bold shadow focus:outline-none focus:ring-2 focus:ring-blue-400">
+            Add
+          </button>
+        </form>
+      </div>
+      <div class="glass-box w-full p-6 shadow-xl">
+        <h2 class="text-2xl font-semibold mb-4">Active Shipments</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-separate" style="border-spacing: 0">
+            <thead>
+              <tr class="bg-black">
+                <th class="px-4 py-2 border-b border-gray-700">Name</th>
+                <th class="px-4 py-2 border-b border-gray-700">Status</th>
+                <th class="px-4 py-2 border-b border-gray-700">Progress</th>
+                <th class="px-4 py-2 border-b border-gray-700">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% raw %}
+              <tr v-if="trackings.length === 0">
+                <td colspan="4" class="px-4 py-2 text-center">No shipments available.</td>
+              </tr>
+              <tr v-for="item in trackings" :key="item.tracking_number" class="transition-colors duration-300 hover:bg-white/10">
+                <td class="px-4 py-2 border-b border-gray-700">
+                  {{ item.tracking_name ? (item.tracking_name + ' (' + item.tracking_number + ')') : item.tracking_number }}
+                </td>
+                <td class="px-4 py-2 border-b border-gray-700">{{ item.status }}</td>
+                <td class="px-4 py-2 border-b border-gray-700">
+                  {{ (item.progress !== null && item.maxProgress !== null) ? (item.progress + ' / ' + item.maxProgress) : '-' }}
+                </td>
+                <td class="px-4 py-2 border-b border-gray-700">
+                  <button @click="deleteTracking(item.tracking_number)" class="px-3 py-1 rounded bg-red-700 hover:bg-red-600 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-400">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            {% endraw %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <footer class="text-center text-sm text-gray-500">
+        <p>Created with ♥️ by <a href="https://github.com/nils-kt/nils-kt-addons" target="_blank" class="hover:underline">nils-kt</a></p>
+      </footer>
+    </div>
+  </div>
+  <script>
+    const updateInterval = {{ config.update_interval|int * 60000 }};
+    
+    const app = Vue.createApp({
+      data() {
+        return {
+          trackings: []
+        }
+      },
+      methods: {
+        fetchTrackings() {
+          fetch("/trackings")
+            .then(response => response.json())
+            .then(data => {
+              this.trackings = data;
+            })
+            .catch(error => {
+              console.error("Fehler beim Abrufen der Sendungen:", error);
+            });
+        },
+        deleteTracking(tracking_number) {
+          fetch("/delete/" + encodeURIComponent(tracking_number), { method: "POST" })
+            .then(response => {
+              if (response.ok) {
+                this.fetchTrackings();
+              } else {
+                console.error("Fehler beim Löschen der Sendung:", tracking_number);
+              }
+            })
+            .catch(error => {
+              console.error("Fehler beim Löschen der Sendung:", error);
+            });
+        }
+      },
+      mounted() {
+        this.fetchTrackings();
+        setInterval(this.fetchTrackings, updateInterval);
+      }
+    });
+    app.mount("#app");
+  </script>
+</body>
+</html>

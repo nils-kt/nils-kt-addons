@@ -1,2 +1,2 @@
 #!/bin/sh
-python parcel_tracker.py
+python src/app.py
