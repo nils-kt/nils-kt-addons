@@ -35,8 +35,7 @@ Mit dem **Parcel Tracker Add‑On** kannst du deine DHL-Pakete ganz einfach im B
 ### Repository hinzufügen
 
 Gehe in Home Assistant zu **Einstellungen → Add-ons → Add-on Store** und klicke auf **„Repositories“**.  
-Gib die URL deines Repositories ein:  
-`https://github.com/nils-kt/nils-kt-addons`
+Gib die URL des Repositories ein: `https://github.com/nils-kt/nils-kt-addons`
 
 ### Add‑On installieren
 
