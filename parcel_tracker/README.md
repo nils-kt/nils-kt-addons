@@ -2,9 +2,17 @@
 
 Mit dem **Parcel Tracker Add‑On** kannst du deine DHL-Pakete ganz einfach im Blick behalten. Das Add‑On ermöglicht es dir, DHL-Trackingnummern zu verwalten – du kannst sie hinzufügen, den aktuellen Status abrufen und auch wieder entfernen. Gleichzeitig stellt das Add‑On eine REST-API bereit, die alle aktiven Sendungen als JSON-Liste liefert. Diese Daten kannst du entweder über einen REST-Sensor in Home Assistant nutzen oder über eine benutzerdefinierte Lovelace-Karte direkt im Dashboard anzeigen lassen.
 
-[![Supervisor Add‑On Badge](https://my.home-assistant.io/badges/supervisor_addon.svg)](https://my.home-assistant.io/redirect/supervisor_addon/?addon=7b702346_parcel_tracker)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/nils.kt) [![Supervisor Add‑On Badge](https://my.home-assistant.io/badges/supervisor_addon.svg)](https://my.home-assistant.io/redirect/supervisor_addon/?addon=7b702346_parcel_tracker)
+
+
 
 ---
+
+## Screenshots
+| Screenshot | Beschreibung |
+|------------|---------------|
+| ![Übersicht](screenshots/uebersicht.png) | Übersicht der Web-Oberfläche mit allen aktiven Sendungen. |
+| ![Widget](screenshots/widget.png) | Custom Lovelace-Karte zur Anzeige der Sendungsdaten im Home Assistant Dashboard. |
 
 ## Funktionen
 
