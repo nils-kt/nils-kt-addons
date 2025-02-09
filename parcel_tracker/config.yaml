@@ -1,5 +1,5 @@
 name: Parcel Tracker
-version: "2.0.3"
+version: "2.0.4"
 slug: parcel_tracker
 description: Ein Home Assistant Add‑On zur Paketverfolgung via DHL (weitere Anbieter sind in Planung).
 url: "https://github.com/nils-kt/nils-kt-addons/tree/main/parcel_tracker"
@@ -14,7 +14,7 @@ map:
 ports:
   "58784/tcp": 58784
 ports_description:
-  "58784/tcp": "Parcel Tracker Webinterface (dont'change)"
+  "58784/tcp": "Parcel Tracker Webinterface (don't change)"
 startup: services
 options:
   host_ip: "127.0.0.1"

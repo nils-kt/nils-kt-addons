@@ -1,17 +1,27 @@
 import os
+import logging
 import requests
+
+logger = logging.getLogger(__name__)
 
 def send_notification(tracking_number, old_status, new_status, tracking_name=""):
     """
-    Sends a notification to Home Assistant.
-    It uses HASS_URL and HASSIO_TOKEN from the environment variables.
+    Sends a notification to Home Assistant using the Supervisor API endpoint.
+    Uses the SUPERVISOR_TOKEN from environment variables.
+    
+    The API endpoint is fixed to "http://supervisor/core/api", so that communication
+    is done with the Supervisor rather than directly with the Core.
     """
-    hass_url = os.environ.get("HASS_URL", f"http://{os.environ.get('host_ip', '127.0.0.1')}:8123")
-    token = os.environ.get("HASSIO_TOKEN")
+    supervisor_url = "http://supervisor/core/api"
+    token = os.environ.get("SUPERVISOR_TOKEN")
     if not token:
-        print("No HASSIO_TOKEN found, notification will not be sent.")
+        logger.error("No SUPERVISOR_TOKEN found, notification will not be sent.")
         return
-    url = f"{hass_url}/api/services/persistent_notification/create"
+
+    # Debug output: show last 4 characters of the token (without exposing the full token)
+    logger.debug(f"Using SUPERVISOR_TOKEN ending with: {token[-4:]}")
+
+    url = f"{supervisor_url}/services/persistent_notification/create"
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json"
@@ -24,6 +34,6 @@ def send_notification(tracking_number, old_status, new_status, tracking_name="")
     try:
         response = requests.post(url, headers=headers, json=payload, timeout=10)
         response.raise_for_status()
-        print(f"Notification sent for {tracking_number}")
+        logger.info(f"Notification sent for {tracking_number}")
     except Exception as e:
-        print(f"Error sending notification for {tracking_number}: {e}")
+        logger.error(f"Error sending notification for {tracking_number}: {e}")

@@ -1,3 +1,9 @@
+## [2.0.4] - 09.02.2025
+
+### Changed
+- **Benachrichtigungsintegration:**  
+  Die Funktion `send_notification` wurde aktualisiert, sodass nun der Supervisor-API-Endpunkt (`http://supervisor/core/api`) verwendet wird, anstatt direkt mit dem Core zu kommunizieren. Die Authentifizierung erfolgt nun ausschließlich über den `SUPERVISOR_TOKEN`.
+
 ## [2.0.3] - 08.02.2025
 
 ### Changed
