@@ -111,8 +111,7 @@ Für eine ansprechende Darstellung im Dashboard kannst du die benutzerdefinierte
 
 ## Benachrichtigungen
 
-Wenn **notify_on_change** aktiviert ist, vergleicht das System bei jeder Aktualisierung den aktuellen Status mit dem vorherigen. Bei Änderungen wird automatisch eine persistent_notification an Home Assistant gesendet.  
-*Hinweis:* Für die Benachrichtigungen müssen die Umgebungsvariablen `HASS_URL` (z. B. `http://<HA-IP>:8123`) und `HASSIO_TOKEN` korrekt gesetzt sein.
+Wenn **notify_on_change** aktiviert ist, vergleicht das System bei jeder Aktualisierung den aktuellen Status mit dem vorherigen. Bei Änderungen wird automatisch eine persistent_notification an Home Assistant gesendet.
 
 ---
 
