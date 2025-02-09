@@ -92,9 +92,9 @@ Für eine ansprechende Darstellung im Dashboard kannst du die benutzerdefinierte
 
 1. **Ressource einbinden:**  
    Die Karte wird durch die JavaScript-Datei bereitgestellt, die unter  
-   `http://<HA-IP>:58784/scripts/card.js`  
+   `http://<HA-IP>:58784/static/card.js`  
    abrufbar ist. Füge diese Ressource in dein Lovelace-Dashboard ein:
-   - **URL:** `http://<HA-IP>:58784/scripts/card.js`  
+   - **URL:** `http://<HA-IP>:58784/static/card.js`  
    - **Typ:** `JavaScript-Modul`
 
 2. **Karte hinzufügen:**  
